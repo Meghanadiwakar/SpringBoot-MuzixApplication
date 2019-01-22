@@ -14,4 +14,7 @@ public interface TrackService {
 
     public List<Track> deleteById(int trackId);
 
+    public Track findTrackByName(String trackName);
+
+
 }

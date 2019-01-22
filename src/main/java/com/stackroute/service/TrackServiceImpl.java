@@ -40,6 +40,14 @@ public class TrackServiceImpl implements TrackService {
         return trackRepository.findAll();
     }
 
+    @Override
+    public Track findTrackByName(String trackName) {
 
-
+        Track tracks = trackRepository.findTrackByName(trackName);
+        return tracks;
+    }
 }
+
+
+
+
