@@ -12,8 +12,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import sun.tools.java.Environment;
+
 
 
 @ComponentScan
@@ -40,21 +41,19 @@ public class MuzixApplication implements ApplicationListener<ContextRefreshedEve
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-		trackRepository.save(new Track(Integer.parseInt(env.getproperty)));
-
-
+		trackRepository.save(new Track(Integer.parseInt(env.getProperty("trackId")),env.getProperty("trackName"),env.getProperty("Comment")));
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		trackRepository.save(new Track(2,"hello","lionel"));
-
+		trackRepository.save(new Track(trackId,trackName,comment));
 	}
+}
+
 
 //	public static void main(String[] args) {
 //		SpringApplication.run(MuzixApplication.class, args);
 //	}
 
 
-}
 
