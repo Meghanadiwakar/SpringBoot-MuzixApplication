@@ -67,4 +67,18 @@ public class TrackController {
     public ResponseEntity<?> findTrack( @PathVariable String trackName){
         return new ResponseEntity <Track>(trackService.findTrackByName(trackName),HttpStatus.OK);
     }
+
+
+//    @GetMapping(value = "/delete/{trackName}")
+//    public ResponseEntity<List<Track>> getTrackById(@PathVariable String name)
+//    {
+//        ResponseEntity responseEntity;
+//        try {            return new ResponseEntity <List<Track>>(trackService.getTrackByName(name),HttpStatus.OK);
+//        }
+//        catch (Exception ex)
+//        {
+//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+//        }
+//        return responseEntity;
+//    }
 }
