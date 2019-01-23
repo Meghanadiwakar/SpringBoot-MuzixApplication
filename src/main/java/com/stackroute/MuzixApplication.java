@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.orm.jpa.hibernate.SpringJtaPlatform;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -34,12 +33,6 @@ public class MuzixApplication implements ApplicationListener<ContextRefreshedEve
 
 
 	}
-
-
-//	public static void main(String[] args) {
-//		SpringApplication.run(MuzixApplication.class, args);
-//	}
-
 
 }
 
