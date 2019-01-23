@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "api/v1")
@@ -22,6 +23,10 @@ public class TrackController {
         this.trackService = trackService;
     }
 
+
+    /*
+    save track method
+     */
     @PostMapping(value = "track")
     public ResponseEntity<?> saveTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
@@ -34,12 +39,18 @@ public class TrackController {
         return responseEntity;
     }
 
+    /*
+    get all tracks method
+     */
     @GetMapping("tracks")
     public ResponseEntity<?> getAllTracks() {
         return new ResponseEntity<List<Track>>(trackService.getAllTracks(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "update")
+    /*
+    update the tracks method
+     */
+    @PutMapping(value = "track")
     public ResponseEntity<?> updateTrack(@RequestBody Track track) {
         ResponseEntity responseEntity;
         try {
@@ -51,7 +62,10 @@ public class TrackController {
         return responseEntity;
     }
 
-    @DeleteMapping("delete/{trackId}")
+    /*
+    delete the track method
+     */
+    @DeleteMapping("track/{trackId}")
     public ResponseEntity<?> deleteById(@PathVariable int trackId) {
         ResponseEntity responseEntity;
         try {
@@ -61,10 +75,45 @@ public class TrackController {
             responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
         }
         return responseEntity;
+
     }
 
-    @GetMapping("query/{trackName}")
-    public ResponseEntity<?> findTrack( @PathVariable String trackName){
-        return new ResponseEntity <Track>(trackService.findTrackByName(trackName),HttpStatus.OK);
+    /*
+    Get Track by Id Method
+     */
+
+    @GetMapping(value = "getTrack/{trackId}")
+    public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String trackId)
+    {
+        ResponseEntity responseEntity;
+        try {
+
+            return new ResponseEntity<Optional<Track>>(trackService.getTrackById(Integer.parseInt(trackId)),HttpStatus.CREATED);
+        }
+        catch (Exception ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
     }
+
+    /*
+    Get Track by track name method
+     */
+
+    @GetMapping(value = "track/{trackName}")
+    public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
+    {
+        ResponseEntity responseEntity;
+        try {
+            responseEntity = new ResponseEntity<Track>(trackService.trackByName(trackName),HttpStatus.OK);
+        }
+        catch (Exception ex)
+        {
+            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+        }
+        return responseEntity;
+    }
+
+
 }
