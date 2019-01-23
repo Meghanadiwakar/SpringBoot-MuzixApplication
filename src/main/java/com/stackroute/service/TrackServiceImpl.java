@@ -27,9 +27,13 @@ public class TrackServiceImpl implements TrackService {
 
     //update lists of tracks
     @Override
-    public Track updateTrack(Track track){
-        Track updatedTrack=trackRepository.save(track);
-        return updatedTrack;
+    public Track updateTrack(int trackId, String comment){
+
+        Optional<Track> track=trackRepository.findById(trackId);
+        Track track1=track.get();
+        track1.setComment(comment);
+        Track savedTrack=trackRepository.save(track1);
+        return savedTrack;
     }
 //get all tracks
     @Override

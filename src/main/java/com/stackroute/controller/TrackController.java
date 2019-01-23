@@ -50,11 +50,11 @@ public class TrackController {
     /*
     update the tracks method
      */
-    @PutMapping(value = "track")
-    public ResponseEntity<?> updateTrack(@RequestBody Track track) {
+    @PutMapping(value = "track/{trackId}/{comment}")
+    public ResponseEntity<?> updateTrack(@PathVariable int trackId,@PathVariable String comment) {
         ResponseEntity responseEntity;
         try {
-            trackService.updateTrack(track);
+            trackService.updateTrack(trackId,comment);
             responseEntity = new ResponseEntity<String>("successfully updated", HttpStatus.CREATED);
         } catch (Exception ex) {
             responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
@@ -82,7 +82,7 @@ public class TrackController {
     Get Track by Id Method
      */
 
-    @GetMapping(value = "getTrack/{trackId}")
+    @GetMapping(value = "/track/{trackId}")
     public ResponseEntity<Optional<Track>> getByIdTrack(@PathVariable String trackId)
     {
         ResponseEntity responseEntity;
@@ -101,7 +101,7 @@ public class TrackController {
     Get Track by track name method
      */
 
-    @GetMapping(value = "track/{trackName}")
+    @GetMapping(value = "tracks/{trackName}")
     public ResponseEntity<Track> getByTrackName(@PathVariable String trackName)
     {
         ResponseEntity responseEntity;
