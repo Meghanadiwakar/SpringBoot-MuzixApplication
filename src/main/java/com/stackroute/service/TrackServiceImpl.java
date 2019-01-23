@@ -7,6 +7,7 @@ import com.stackroute.repository.TrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Id;
 import java.util.List;
 @Service
 public class TrackServiceImpl implements TrackService {
@@ -21,7 +22,7 @@ public class TrackServiceImpl implements TrackService {
 
     @Override
     public Track saveTrack(Track track) throws TrackAlreadyExistsException {
-        if(trackRepository.existsById(track.getTrackId())){
+        if(trackRepository.existsById(track.gettrackId)){
             throw new TrackAlreadyExistsException("Track already exists");
         }
         Track savedTrack=trackRepository.save(track);
@@ -49,15 +50,6 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public int deleteTrack(int trackId) throws TrackNotFoundException {        if( !trackRepository.existsById(trackId) )
-    {
-        throw new TrackNotFoundException("ID is not found");
-    }
-        trackRepository.deleteById(trackId);
-        return 0;
-    }
-
-    @Override
     public Track findTrackByName(String trackName) {
 
         Track tracks = trackRepository.findTrackByName(trackName);
@@ -73,6 +65,16 @@ public class TrackServiceImpl implements TrackService {
     {
         throw new TrackNotFoundException("Given ID is not there");
     }
+    }
+
+    @Override
+    public int deleteTrack(int trackId) throws TrackNotFoundException {
+        if( !trackRepository.existsById(trackId) )
+        {
+            throw new TrackNotFoundException("ID is not found");
+        }
+        trackRepository.deleteById(trackId);
+        return 0;
     }
 }
 
