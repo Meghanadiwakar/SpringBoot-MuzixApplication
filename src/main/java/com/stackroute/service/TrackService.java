@@ -14,13 +14,12 @@ public interface TrackService {
 
     public Track updateTrack(Track track);
 
-    public List<Track> deleteById(int trackId);
+    public List<Track> deleteById(int trackId) throws TrackNotFoundException;
 
     public Track findTrackByName(String trackName);
-
-    public List<Track> getTrackById(int trackId) throws TrackNotFoundException;
-
-    public int deleteTrack(int trackId) throws TrackNotFoundException;
+//    public List<Track> getTrackByName(String trackName) throws TrackNotFoundException;
+//
+//    public int deleteTrack(int trackId) throws TrackNotFoundException;
 
 
 }

@@ -56,29 +56,28 @@ public class TrackController {
         ResponseEntity responseEntity;
         try {
             trackService.deleteById(trackId);
-            responseEntity = new ResponseEntity<List<Track>>(trackService.getAllTracks(),HttpStatus.OK);
+            responseEntity = new ResponseEntity<List<Track>>(trackService.getAllTracks(), HttpStatus.OK);
         } catch (Exception ex) {
-            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
         }
         return responseEntity;
     }
 
     @GetMapping("query/{trackName}")
-    public ResponseEntity<?> findTrack( @PathVariable String trackName){
-        return new ResponseEntity <Track>(trackService.findTrackByName(trackName),HttpStatus.OK);
+    public ResponseEntity<?> findTrack(@PathVariable String trackName) {
+        return new ResponseEntity<Track>(trackService.findTrackByName(trackName), HttpStatus.OK);
     }
 
-
-//    @GetMapping(value = "/delete/{trackName}")
-//    public ResponseEntity<List<Track>> getTrackById(@PathVariable String name)
-//    {
+//    @GetMapping(value = "/track/{trackName}")
+//    public ResponseEntity<List<Track>> getTrackByName(@PathVariable String trackName) {
 //        ResponseEntity responseEntity;
-//        try {            return new ResponseEntity <List<Track>>(trackService.getTrackByName(name),HttpStatus.OK);
-//        }
-//        catch (Exception ex)
-//        {
-//            responseEntity = new ResponseEntity<String>(ex.getMessage(),HttpStatus.CONFLICT);
+//        try {
+//            return new ResponseEntity<List<Track>>(trackService.getTrackByName(trackName), HttpStatus.OK);
+//        } catch (Exception ex) {
+//            responseEntity = new ResponseEntity<String>(ex.getMessage(), HttpStatus.CONFLICT);
 //        }
 //        return responseEntity;
 //    }
 }
+
+
