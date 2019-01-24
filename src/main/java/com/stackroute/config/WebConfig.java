@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 @Configuration
 public class WebConfig {
+ /*
+    This method will enable h2 console.
+     */
 
         @Bean
         ServletRegistrationBean h2servletRegistration(){
