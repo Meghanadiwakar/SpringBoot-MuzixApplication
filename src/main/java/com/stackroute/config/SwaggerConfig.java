@@ -12,10 +12,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
 
+//Configuration Class
 
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
+    //Docket API Bean
+
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -25,6 +28,10 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .build()
                 .apiInfo(metaData());
     }
+/*
+    This method will give us the meta Data about our application in database
+     */
+
     private ApiInfo metaData() {
         return new ApiInfoBuilder()
                 .title("Spring Boot REST API")
@@ -35,6 +42,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .contact(new Contact("meghana d ", "https://github.gwakar", "meghan"))
                 .build();
     }
+    /*
+   This will add the resource handlers on swagger
+    */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
@@ -44,5 +54,4 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 }
-
 
